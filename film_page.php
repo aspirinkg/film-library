@@ -1,5 +1,5 @@
 <?php
-
+// это черновой вариант данной страницы , по этому нет никаких проверок;
 $connection =  mysqli_connect('localhost' , 'root' , '' , 'filmoteka'  );
 
 $res = mysqli_query($connection , "SELECT * FROM `films` WHERE `id` = "  . $_GET['id']);
