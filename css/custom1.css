@@ -1,7 +1,12 @@
 .error{
     display: none;
 }
-
+.success{
+    display: block;
+    background: orange;
+    color: black;
+    text-align: center;
+}
 
 .cart{
    width:  400px;

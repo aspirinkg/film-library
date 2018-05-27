@@ -5,13 +5,20 @@
   if(!$connection){
     exit('соединение не установленно');
   }
+    if($_GET['action'] == 'delete'){
+      $query = "DELETE FROM `films` WHERE `id` = '".mysqli_real_escape_string($connection,$_GET['id'])."' LIMIT 1";
+      mysqli_query($connection , $query);
 
-  if($_POST['title']){
-    $error = [];
-  if($_POST['genre'] == ''){
-    $error[] = 'Введите жанр';
-   }
 
+        if(mysqli_affected_rows($connection)){
+          echo 'Фильм успешно удален';
+        }
+    }
+    if($_POST['title']){
+        $error = [];
+      if($_POST['genre'] == ''){
+          $error[] = 'Введите жанр';
+      }
   elseif($_POST['year'] == ''){
     $error[] = 'Введите год';
    }
@@ -89,7 +96,9 @@
         <h4 class="title-4"><?=$objectBd[$key]['name']?></h4>
         <div class="badge"><?=$objectBd[$key]['genre']?></div>
         <div class="badge"><?=$objectBd[$key]['year']?></div>
-        <a href="/film_page.php?id=<?=$objectBd[$key]['id']?>">Подробнее </a>  
+        <a href="/film_page.php?id=<?=$objectBd[$key]['id']?>">Подробнее </a> 
+        <a href="?action=delete&id=<?=$objectBd[$key]['id']?>">Удалить</a> 
+        <a href="edit.php?id=<?=$objectBd[$key]['id']?>">Редактировать</a> 
       </div>
 
         <?php 
