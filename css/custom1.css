@@ -13,3 +13,62 @@
     margin: 0 auto;
     text-align: center;
 }
+input.button{
+    padding-top: 0 !important;
+}
+.button--edit{
+    color: white !important;
+}
+
+.button--delete{
+    color: white !important;
+}
+
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.user-content a {
+    color: #000 !important;
+}
+.card{
+   display: flex;
+   align-content: flex-start;
+   padding-right: 5px;
+}
+
+.card p {
+    margin-left: 20px;
+    /* margin-top: -70px; */
+}
+
+.card-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.user-content h4{
+    font-size: 20px;
+    font-weight: 900;
+    margin: 0em 20px 1em
+}
+
+.cont_cat{
+    display: flex;
+}
+.cont_cat ul{
+    list-style: none;
+}
+.cont_cat h4{
+    margin-left: 0;
+}
+/* .user-content li a{
+    text-decoration: none;
+} */
+.user-content li:before{
+    display: none;
+}

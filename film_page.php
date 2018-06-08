@@ -1,29 +1,26 @@
 <?php
-// это черновой вариант данной страницы , по этому нет никаких проверок;
-$connection =  mysqli_connect('localhost' , 'root' , '' , 'filmoteka'  );
+require_once('db.php');
+require_once('model/model.php');
+if(@$_GET['action'] == 'delete'){
+  film_delete($connection, (int) $_GET['id']);
+}
 
-$res = mysqli_query($connection , "SELECT * FROM `films` WHERE `id` = "  . $_GET['id']);
+$result = get_films_for_edit($connection, $_GET['id'])[0];
 
-$result = mysqli_fetch_assoc($res)
+if($_POST){
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $comment = $_POST['comment'];
 
-?>
+  $query = "INSERT INTO  `comments` (`name`, `email`,`comment`,`film_id`) VALUES ('$name' , '$email' , '$comment' , '$_GET[id]' ) ";
+  mysqli_query($connection,$query);
+}
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/custom1.css"/>
-</head>
-<body>
-    <div class="cart">
-    <img src="<?=$result['image']?>" alt="" width="400">
-    <h2><?=$result['name']?></h2>
-    <p><?=$result['genre']?></p>
-    <p><?=$result['year']?></p>
-    </div>
-</body>
-</html>
+
+
+include('template/header.tpl');
+include('template/film-page.tpl');
+include('template/footer.tpl');
+
+  
